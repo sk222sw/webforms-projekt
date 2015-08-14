@@ -9,9 +9,8 @@ using System.Web.UI.WebControls;
 
 namespace Chatter.Pages.AppPages
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Posts : System.Web.UI.Page
     {
-
         private Service _service;
 
         private Service Service
@@ -24,15 +23,12 @@ namespace Chatter.Pages.AppPages
 
         }
 
-        public IEnumerable<User> UserListView_GetData()
+        public IEnumerable<BlogPost> BlogPostListView_GetData()
         {
-            return Service.GetUsers();
+            return Service.GetBlogPosts();
         }
 
-        public IEnumerable<UserInfo> UserInfoListView_GetData()
-        {
-            return Service.GetUserInfo();
-        }
+
 
     }
 }

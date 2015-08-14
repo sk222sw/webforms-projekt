@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\AppPages\Posts.aspx" />
     <Content Include="Pages\Shared\Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -70,8 +71,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\BLL\BlogPost.cs" />
     <Compile Include="Model\BLL\User.cs" />
     <Compile Include="Model\BLL\UserInfo.cs" />
+    <Compile Include="Model\DAL\BlogPostDAL.cs" />
     <Compile Include="Model\DAL\DALBase.cs" />
     <Compile Include="Model\DAL\UserDAL.cs" />
     <Compile Include="Model\DAL\UserInfoDAL.cs" />
@@ -82,6 +85,13 @@
     </Compile>
     <Compile Include="Pages\AppPages\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AppPages\Posts.aspx.cs">
+      <DependentUpon>Posts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AppPages\Posts.aspx.designer.cs">
+      <DependentUpon>Posts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Shared\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

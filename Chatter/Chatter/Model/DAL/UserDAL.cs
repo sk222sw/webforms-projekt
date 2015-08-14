@@ -15,8 +15,6 @@ namespace Chatter.Model.DAL
         //returnera en referens till listobjektet users
         public IEnumerable<User> GetUsers()
         {
-            string connectionString = WebConfigurationManager.ConnectionStrings["ChatterConnectionString"].ConnectionString;
-
             using (var conn = CreateConnection())
             {
                 var users = new List<User>(100);

@@ -71,8 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\BLL\User.cs" />
+    <Compile Include="Model\BLL\UserInfo.cs" />
     <Compile Include="Model\DAL\DALBase.cs" />
     <Compile Include="Model\DAL\UserDAL.cs" />
+    <Compile Include="Model\DAL\UserInfoDAL.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Pages\AppPages\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

@@ -21,5 +21,10 @@ namespace Chatter.Model
             return UserDAL.GetUsers();
         }
 
+        public IEnumerable<UserInfo> GetUserInfo()
+        {
+            return null;
+        }
+
     }
 }

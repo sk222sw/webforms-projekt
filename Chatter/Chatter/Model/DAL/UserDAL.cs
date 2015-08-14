@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 
 namespace Chatter.Model.DAL
 {
@@ -14,11 +15,13 @@ namespace Chatter.Model.DAL
         //returnera en referens till listobjektet users
         public IEnumerable<User> GetUsers()
         {
+            string connectionString = WebConfigurationManager.ConnectionStrings["ChatterConnectionString"].ConnectionString;
+
             using (var conn = CreateConnection())
             {
                 var users = new List<User>(100);
 
-                var cmd = new SqlCommand("dbo.uspGetUser");
+                SqlCommand cmd = new SqlCommand("dbo.uspGetUser", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 conn.Open();

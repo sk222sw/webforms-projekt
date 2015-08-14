@@ -34,5 +34,11 @@ namespace Chatter.Pages.AppPages
         {
             return Service.GetUsers();
         }
+
+        public IEnumerable<UserInfo> UserInfoListView_GetData()
+        {
+            return Service.GetUserInfo();
+        }
+
     }
 }

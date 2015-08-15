@@ -49,5 +49,35 @@ namespace Chatter.Model.DAL
 
             }
         }
+
+        public User GetUserById(int userId)
+        {
+            using (var conn = CreateConnection())
+            {
+                var cmd = new SqlCommand("dbo.uspGetUserById", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@userId", SqlDbType.Int, 4).Value = userId;
+
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int userIdIndex = reader.GetOrdinal("UserId");
+                        int userNameIndex = reader.GetOrdinal("UserName");
+
+                        return new User
+                        {
+                            UserId = reader.GetInt32(userIdIndex),
+                            UserName = reader.GetString(userNameIndex)
+                        };
+                    }
+                    return null;
+                }
+            }
+        }
+
     }
 }

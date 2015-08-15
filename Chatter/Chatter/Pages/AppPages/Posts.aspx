@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <h1>Inlägg</h1>
     <asp:ListView ID="ListView1" runat="server"
         ItemType="Chatter.Model.BLL.BlogPost"
         SelectMethod="BlogPostListView_GetData"
@@ -10,6 +11,9 @@
             <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
         </LayoutTemplate>
         <ItemTemplate>
+            <div>
+                <asp:Label ID="UserNameLabel" runat="server" Text='<%#: GetUser(Item.UserId).UserName %>' />
+            </div>
             <div>
                 <asp:Label ID="TitleLabel" runat="server" Text='<%#: Item.Title %>' />
             </div>

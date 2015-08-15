@@ -37,6 +37,11 @@ namespace Chatter.Model
             return UserDAL.GetUsers().OrderBy(o => o.UserId);
         }
 
+        public User GetUserById(int userId) 
+        {
+            return UserDAL.GetUserById(userId);
+        }
+
         public IEnumerable<UserInfo> GetUserInfo()
         {
             // se till att det som returneras är sorterat efter UserId

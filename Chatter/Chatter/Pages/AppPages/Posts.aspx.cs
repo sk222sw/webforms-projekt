@@ -28,6 +28,10 @@ namespace Chatter.Pages.AppPages
             return Service.GetBlogPosts();
         }
 
+        public User GetUser(int userId) 
+        {
+            return Service.GetUserById(userId);
+        }
 
 
     }

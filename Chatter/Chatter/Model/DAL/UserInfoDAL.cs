@@ -84,5 +84,61 @@ namespace Chatter.Model.DAL
 
             }
         }
+
+        public UserInfo GetUserInfoById(int userInfoId)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("dbo.uspGetUserInfoById", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@UserInfoId", SqlDbType.Int, 4).Value = userInfoId;
+
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int userInfoIdIndex = reader.GetOrdinal("UserInfoId");
+                        int userIdIndex = reader.GetOrdinal("UserId");
+                        int nameIndex = reader.GetOrdinal("Name");
+                        int emailIndex = reader.GetOrdinal("Email");
+
+                        return new UserInfo
+                        {
+                            UserInfoId = reader.GetInt32(userInfoIdIndex),
+                            UserId = reader.GetInt32(userIdIndex),
+                            Name = reader.GetString(nameIndex),
+                            Email = reader.GetString(emailIndex)
+                        };
+                    }
+                }
+                return null;
+
+            }
+        }
+
+        public void UpdateUserInfo(UserInfo userInfo)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("dbo.uspUpdateUserInfo", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@UserInfoId", SqlDbType.Int, 4).Value = userInfo.UserInfoId;
+                cmd.Parameters.Add("@Name", SqlDbType.VarChar, 40).Value = userInfo.Name;
+                cmd.Parameters.Add("@Email", SqlDbType.VarChar, 50).Value = userInfo.Email;
+
+
+                conn.Open();
+
+                cmd.ExecuteNonQuery();
+
+            }
+        }
+
+
+
     }
 }

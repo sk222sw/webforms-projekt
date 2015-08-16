@@ -54,10 +54,21 @@ namespace Chatter.Model
             return UserInfoDAL.GetUserInfoByUserId(userId);
         }
 
+        public UserInfo GetUserInfoById(int userInfoId)
+        {
+            return UserInfoDAL.GetUserInfoById(userInfoId);
+        }
+
         public IEnumerable<BlogPost> GetBlogPosts()
         {
             return BlogPostDAL.GetBlogPosts();
         }
+
+        public void UpdateUserInfo(UserInfo userInfo)
+        {
+            UserInfoDAL.UpdateUserInfo(userInfo);
+        }
+
 
     }
 }

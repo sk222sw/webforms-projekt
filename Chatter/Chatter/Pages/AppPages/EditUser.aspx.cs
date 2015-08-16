@@ -26,14 +26,30 @@ namespace Chatter.Pages.AppPages
 
         // The id parameter should match the DataKeyNames value set on the control
         // or be decorated with a value provider attribute, e.g. [QueryString]int id
-        public Chatter.Model.BLL.User EditUserFormView_GetItem([RouteData] int id)
+        public UserInfo EditUserFormView_GetItem([RouteData] int id)
         {
-            return Service.GetUserById(id);
+            return Service.GetUserInfoByUserId(id);
         }
 
-        public UserInfo GetUserInfoByUserId(int userId)
+        //public UserInfo GetUserInfoByUserId(int userId)
+        //{
+        //    return Service.GetUserInfoByUserId(userId);
+        //}
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void UserFormView_UpdateItem(int userInfoId)
         {
-            return Service.GetUserInfoByUserId(userId);
+            var userInfo = Service.GetUserInfoById(userInfoId);
+
+            if (TryUpdateModel(userInfo))
+            {
+                Service.UpdateUserInfo(userInfo);
+            }
+        }
+
+        public User GetUser(int id)
+        {
+            return Service.GetUserById(id);
         }
 
     }

@@ -49,6 +49,11 @@ namespace Chatter.Model
             return UserInfoDAL.GetUserInfo().OrderBy(o => o.UserId);
         }
 
+        public UserInfo GetUserInfoByUserId(int userId)
+        {
+            return UserInfoDAL.GetUserInfoByUserId(userId);
+        }
+
         public IEnumerable<BlogPost> GetBlogPosts()
         {
             return BlogPostDAL.GetBlogPosts();

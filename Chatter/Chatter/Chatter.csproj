@@ -57,7 +57,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\main.css" />
+    <Content Include="Content\reset.css" />
     <Content Include="Global.asax" />
+    <Content Include="Pages\AppPages\EditUser.aspx" />
     <Content Include="Pages\AppPages\NewPost.aspx" />
     <Content Include="Pages\AppPages\Posts.aspx" />
     <Content Include="Pages\AppPages\UserList.aspx" />
@@ -92,6 +95,13 @@
     </Compile>
     <Compile Include="Pages\AppPages\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AppPages\EditUser.aspx.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AppPages\EditUser.aspx.designer.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\AppPages\NewPost.aspx.cs">
       <DependentUpon>NewPost.aspx</DependentUpon>

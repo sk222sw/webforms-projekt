@@ -10,10 +10,13 @@ namespace Chatter
     {
         public static void RegisterRoute(RouteCollection routes)
         {
-            routes.MapPageRoute("Default", "", "~/Pages/AppPages/Posts.aspx");
-            routes.MapPageRoute("Posts", "meddelanden", "~/Pages/AppPages/Posts.aspx");
-            routes.MapPageRoute("NewPost", "meddelande/nytt", "~/Pages/AppPages/NewPost.aspx");
-            routes.MapPageRoute("UserList", "users", "~/Pages/AppPages/UserList.aspx");
+            //                  routename           /urlnamn                    path    
+            routes.MapPageRoute("Default",          "",                         "~/Pages/AppPages/Posts.aspx");
+            routes.MapPageRoute("Posts",            "meddelanden",              "~/Pages/AppPages/Posts.aspx");
+            routes.MapPageRoute("NewPost",          "meddelande/nytt",          "~/Pages/AppPages/NewPost.aspx");
+            routes.MapPageRoute("UserList",         "användare",                "~/Pages/AppPages/UserList.aspx");
+            routes.MapPageRoute("UserDetails",      "användare/{id}",           "~/Pages/AppPages/UserList.aspx");
+            routes.MapPageRoute("EditUser",         "användare/{id}/redigera",  "~/Pages/AppPages/EditUser.aspx");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Chatter.Model;
+using Chatter.Model.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +11,22 @@ namespace Chatter.Pages.AppPages
 {
     public partial class UserList : System.Web.UI.Page
     {
+        private Service _service;
+
+        private Service Service
+        {
+            get { return _service ?? (_service = new Service()); }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+
+        public IEnumerable<User> UserListView_GetData()
+        {
+            return Service.GetUsers();
+        }
+
     }
 }

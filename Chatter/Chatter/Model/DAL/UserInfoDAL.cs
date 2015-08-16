@@ -130,7 +130,6 @@ namespace Chatter.Model.DAL
                 cmd.Parameters.Add("@Name", SqlDbType.VarChar, 40).Value = userInfo.Name;
                 cmd.Parameters.Add("@Email", SqlDbType.VarChar, 50).Value = userInfo.Email;
 
-
                 conn.Open();
 
                 cmd.ExecuteNonQuery();
@@ -138,7 +137,20 @@ namespace Chatter.Model.DAL
             }
         }
 
+        public void DeleteUserInfo(int userInfoId)
+        {
+            using (var conn = CreateConnection())
+            {
+                var cmd = new SqlCommand("dbo.uspDeleteUserInfo", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.Add("@userInfoId", SqlDbType.Int, 4).Value = userInfoId;
+
+                conn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+        }
 
     }
 }

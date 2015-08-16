@@ -79,5 +79,20 @@ namespace Chatter.Model.DAL
             }
         }
 
+        public void DeleteUser(int userId)
+        {
+            using (var conn = CreateConnection())
+            {
+                var cmd = new SqlCommand("dbo.uspDeleteUser", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@userId", SqlDbType.Int, 4).Value = userId;
+
+                conn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }

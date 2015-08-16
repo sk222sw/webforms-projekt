@@ -12,6 +12,7 @@ header {
     background: #607d8b;
     line-height: 80px;
     color: white;
+
 }
 
 h1 {
@@ -36,6 +37,7 @@ nav {
     width: 100%;
     background: #455a64;
     height: 50px;
+    box-shadow: 0px 4px 7px 1px rgba(0, 0, 0, 0.15);
 }
 
 #links {

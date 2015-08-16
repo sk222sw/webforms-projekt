@@ -69,6 +69,10 @@ namespace Chatter.Model
             UserInfoDAL.UpdateUserInfo(userInfo);
         }
 
+        public void DeleteUser(int userId)
+        {
+            UserDAL.DeleteUser(userId);
+        }
 
     }
 }

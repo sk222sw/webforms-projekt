@@ -6,6 +6,7 @@
     <asp:ListView ID="UserListView" runat="server"
         ItemType="Chatter.Model.BLL.User"
         SelectMethod="UserListView_GetData"
+        DeleteMethod="UserListView_DeleteItem"
         DataKeyNames="UserId">
         <LayoutTemplate>
             <article>
@@ -24,7 +25,8 @@
                     <asp:Label ID="UserNameLabel" runat="server" Text='<%#: Item.UserName %>'/>
                 </td>
                 <td>
-                    <asp:LinkButton ID="DeleteButton" runat="server" Text="Ta bort"/>
+                    <asp:LinkButton ID="DeleteButton" CommandName="Delete" runat="server" Text="Ta bort" CausesValidation="false"
+                        OnClientClick='<%# String.Format("return confirm(\"Ta bort {0}\")", Item.UserName) %>'/>
                 </td>
                 <td>
                     <asp:HyperLink ID="EditButton" runat="server" NavigateUrl='<%# GetRouteUrl("EditUser", new { id = Item.UserId }) %>' Text="Redigera"/>

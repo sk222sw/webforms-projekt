@@ -21,14 +21,6 @@
                 <div>
                     <asp:LinkButton runat="server" CommandName="Update" Text="Spara"/>
                     <asp:HyperLink runat="server" Text="Avbryt" NavigateUrl='<%$ RouteUrl:routename=UserList %>'/>
-<%--                    <asp:Label ID="UserNameLabel" runat="server" Text="Användarnamn" />
-                    <%#: Item.UserName %>
-
-                    Full name: <%#: GetUserInfoByUserId(Item.UserId).Name %>
-                    Email: <%#: GetUserInfoByUserId(Item.UserId).Email %>
-                </div>--%>
-                <div>
-
                 </div>
             </EditItemTemplate>
         </asp:FormView>

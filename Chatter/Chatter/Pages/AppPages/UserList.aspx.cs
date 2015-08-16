@@ -28,5 +28,11 @@ namespace Chatter.Pages.AppPages
             return Service.GetUsers();
         }
 
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void UserListView_DeleteItem(int userId)
+        {
+            Service.DeleteUser(userId);
+        }
+
     }
 }

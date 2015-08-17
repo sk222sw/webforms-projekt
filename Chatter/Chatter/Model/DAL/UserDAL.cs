@@ -94,5 +94,23 @@ namespace Chatter.Model.DAL
             }
         }
 
+        public void InsertUser(User user)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("dbo.uspInsertUser", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@UserName", SqlDbType.VarChar, 40).Value = user.UserName;
+                cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
+                conn.Open();
+
+
+                cmd.ExecuteNonQuery();
+                //user.UserId = (int)(cmd.Parameters["@UserId"].Value);
+            }
+        }
+
     }
 }

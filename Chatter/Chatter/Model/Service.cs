@@ -74,5 +74,9 @@ namespace Chatter.Model
             UserDAL.DeleteUser(userId);
         }
 
+        public void InsertUser(User user)
+        {
+            UserDAL.InsertUser(user);
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace Chatter
             routes.MapPageRoute("UserList",         "användare",                "~/Pages/AppPages/UserList.aspx");
             routes.MapPageRoute("UserDetails",      "användare/{id}",           "~/Pages/AppPages/UserList.aspx");
             routes.MapPageRoute("EditUser",         "användare/{id}/redigera",  "~/Pages/AppPages/EditUser.aspx");
+            routes.MapPageRoute("NewUser",          "ny",                       "~/Pages/AppPages/NewUser.aspx");
         }
     }
 }

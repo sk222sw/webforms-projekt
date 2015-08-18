@@ -52,5 +52,14 @@ namespace Chatter.Pages.AppPages
             return Service.GetUserById(id);
         }
 
+        public void UserInfoFormView_InsertItem(UserInfo userInfo)
+        {
+            //var userInfo = Service.GetUserInfoById(userInfoId);
+            userInfo.UserId = Convert.ToInt32(RouteData.Values["id"]);
+
+            Service.InsertUserInfo(userInfo);
+
+        }
+
     }
 }

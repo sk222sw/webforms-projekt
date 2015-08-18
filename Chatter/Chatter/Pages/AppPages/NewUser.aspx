@@ -17,6 +17,8 @@
                     <asp:HyperLink ID="HyperLink1" runat="server" Text="Avbryt" NavigateUrl='<%# GetRouteUrl("UserList", null) %>'/>
                 </div>
             </InsertItemTemplate>
+
         </asp:FormView>
+
     </article>
 </asp:Content>

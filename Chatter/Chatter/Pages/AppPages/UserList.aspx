@@ -13,9 +13,10 @@
                 <table>
                     <tr>
                         <th>Namn</th>
-                        <th>
-                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%$ RouteUrl:routename=NewUser %>' Text="Ny användare" />
-                    </tr>
+                            <th>
+                                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%$ RouteUrl:routename=NewUser %>' Text="Ny användare" />
+                            </th>
+                        </tr>
                     <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
                 </table>
             </article>
@@ -24,9 +25,6 @@
             <tr>
                 <td>
                     <asp:Label ID="UserNameLabel" runat="server" Text='<%#: Item.UserName %>'/>
-                </td>
-                <td>
-                    <asp:Label ID="UserIdLabel" runat="server" Text='<%#: Item.UserId %>'/>
                 </td>
                 <td>
                     <asp:LinkButton ID="DeleteButton" CommandName="Delete" runat="server" Text="Ta bort" CausesValidation="false"

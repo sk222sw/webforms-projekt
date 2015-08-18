@@ -78,5 +78,10 @@ namespace Chatter.Model
         {
             UserDAL.InsertUser(user);
         }
+
+        public void InsertUserInfo(UserInfo userInfo)
+        {
+            UserInfoDAL.InsertUserInfo(userInfo);
+        }
     }
 }

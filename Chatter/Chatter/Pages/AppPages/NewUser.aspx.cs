@@ -28,7 +28,7 @@ namespace Chatter.Pages.AppPages
         {
             Service.InsertUser(user);
 
-            Response.RedirectToRoute("UserList");
+            Response.RedirectToRoute("NewUserInfo", new { id = user.UserId });
             Context.ApplicationInstance.CompleteRequest();
         }
     }

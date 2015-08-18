@@ -152,5 +152,24 @@ namespace Chatter.Model.DAL
             }
         }
 
+        public void InsertUserInfo(UserInfo userInfo)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("dbo.uspInsertUserInfo", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Value = userInfo.UserId;
+                cmd.Parameters.Add("@Name", SqlDbType.VarChar, 40).Value = userInfo.Name;
+                cmd.Parameters.Add("@Email", SqlDbType.VarChar, 50).Value = userInfo.Email;
+                cmd.Parameters.Add("@UserInfoId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+                conn.Open();
+
+                cmd.ExecuteNonQuery();
+
+                //userInfo.UserInfoId = (int)cmd.Parameters["@UserInfoId"].Value;
+            }
+        }
+
     }
 }

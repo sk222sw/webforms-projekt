@@ -51,5 +51,23 @@ namespace Chatter.Model.DAL
 
             }
         }
+
+        public void InsertBlogPost(BlogPost blogPost)
+        {
+            using(var conn = CreateConnection())
+	        {
+                SqlCommand cmd = new SqlCommand("dbo.uspInsertBlogPost", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Value = blogPost.UserId;
+                cmd.Parameters.Add("@Title", SqlDbType.VarChar, 50).Value = blogPost.Title;
+                cmd.Parameters.Add("@Message", SqlDbType.VarChar, 200).Value = blogPost.Message;
+                cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+                conn.Open();
+
+                cmd.ExecuteNonQuery();
+	        }
+        }
+
     }
 }

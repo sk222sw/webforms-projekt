@@ -83,5 +83,11 @@ namespace Chatter.Model
         {
             UserInfoDAL.InsertUserInfo(userInfo);
         }
+
+        public void InsertBlogPost(BlogPost blogPost)
+        {
+            BlogPostDAL.InsertBlogPost(blogPost);
+        }
+
     }
 }

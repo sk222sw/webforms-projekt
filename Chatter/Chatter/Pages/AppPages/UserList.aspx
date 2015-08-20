@@ -29,6 +29,7 @@
                 <td>
                     <asp:LinkButton ID="DeleteButton" CommandName="Delete" runat="server" Text="Ta bort" CausesValidation="false"
                         OnClientClick='<%# String.Format("return confirm(\"Ta bort {0}?\")", Item.UserName) %>'/>
+<%--                    <asp:HyperLink ID="HyperLink2" runat="server" />--%>
                 </td>
                 <td>
                     <asp:HyperLink ID="EditButton" runat="server" NavigateUrl='<%# GetRouteUrl("EditUser", new { id = Item.UserId }) %>' Text="Redigera"/>

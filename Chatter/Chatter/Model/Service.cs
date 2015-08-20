@@ -64,6 +64,11 @@ namespace Chatter.Model
             return BlogPostDAL.GetBlogPosts();
         }
 
+        public BlogPost GetBlogPostById(int blogPostId)
+        {
+            return BlogPostDAL.GetBlogPostById(blogPostId);
+        }
+
         public void UpdateUserInfo(UserInfo userInfo)
         {
             UserInfoDAL.UpdateUserInfo(userInfo);
@@ -87,6 +92,16 @@ namespace Chatter.Model
         public void InsertBlogPost(BlogPost blogPost)
         {
             BlogPostDAL.InsertBlogPost(blogPost);
+        }
+
+        public void DeleteBlogPost(int blogPostId)
+        {
+            BlogPostDAL.DeleteBlogPost(blogPostId);
+        }
+
+        public void UpdateBlogPost(BlogPost blogPost)
+        {
+            BlogPostDAL.UpdateBlogPost(blogPost);
         }
 
     }

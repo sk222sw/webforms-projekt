@@ -109,6 +109,25 @@ article #date {
     font-weight: 900;
 }
 
+article:first-child {
+    background: white;
+}
+article:nth-child(2n) {
+    background: rgb(219, 188, 188);
+}
+article:nth-child(3n) {
+    background: rgb(185, 178, 157);
+}
+article:nth-child(4n) {
+    background: rgb(152, 188, 196);
+}
+article:nth-child(5n) {
+    background: rgb(159, 202, 173);
+}
+article:nth-child(6n) {
+    background: rgb(125, 116, 154);
+}
+
 /*secArticles*//*secArticles*//*secArticles*//*secArticles*//*secArticles*//*secArticles*/
 
 /*secUserList*//*secUserList*//*secUserList*//*secUserList*//*secUserList*//*secUserList*/

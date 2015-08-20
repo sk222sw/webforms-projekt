@@ -52,6 +52,39 @@ namespace Chatter.Model.DAL
             }
         }
 
+        public BlogPost GetBlogPostById(int blogPostId)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("dbo.uspGetBlogPostById", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPostId;
+
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        int blogPostIdIndex = reader.GetOrdinal("BlogPostId");
+                        int userIdIndex = reader.GetOrdinal("UserId");
+                        int titleIndex = reader.GetOrdinal("Title");
+                        int messageIndex = reader.GetOrdinal("Message");
+
+                        return new BlogPost
+                        {
+                            BlogPostId = reader.GetInt32(blogPostIdIndex),
+                            UserId = reader.GetInt32(userIdIndex),
+                            Title = reader.GetString(titleIndex),
+                            Message = reader.GetString(messageIndex)
+                        };
+                    }
+                }
+                return null;
+            }
+        }
+
         public void InsertBlogPost(BlogPost blogPost)
         {
             using(var conn = CreateConnection())
@@ -69,5 +102,36 @@ namespace Chatter.Model.DAL
 	        }
         }
 
+        public void DeleteBlogPost(int blogPostId)
+        {
+            using (var conn = CreateConnection())
+            {
+                var cmd = new SqlCommand("dbo.uspDeleteBlogPost", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPostId;
+
+                conn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateBlogPost(BlogPost blogPost)
+        {
+            using (var conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("dbo.uspUpdateBlogPost", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("BlogPostId", SqlDbType.Int, 4).Value = blogPost.BlogPostId;
+                cmd.Parameters.Add("@Title", SqlDbType.VarChar, 50).Value = blogPost.Title;
+                cmd.Parameters.Add("@Message", SqlDbType.VarChar, 200).Value = blogPost.Message;
+
+                conn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

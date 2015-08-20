@@ -33,6 +33,12 @@ namespace Chatter.Pages.AppPages
             return Service.GetUserById(userId);
         }
 
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void BlogPostListView_DeleteMethod(int blogPostId)
+        {
+            Service.DeleteBlogPost(blogPostId);
+        }
+
 
     }
 }

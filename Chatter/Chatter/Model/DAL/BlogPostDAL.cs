@@ -124,7 +124,7 @@ namespace Chatter.Model.DAL
                 SqlCommand cmd = new SqlCommand("dbo.uspUpdateBlogPost", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("BlogPostId", SqlDbType.Int, 4).Value = blogPost.BlogPostId;
+                cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPost.BlogPostId;
                 cmd.Parameters.Add("@Title", SqlDbType.VarChar, 50).Value = blogPost.Title;
                 cmd.Parameters.Add("@Message", SqlDbType.VarChar, 200).Value = blogPost.Message;
 

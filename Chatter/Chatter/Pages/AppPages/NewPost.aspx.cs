@@ -1,5 +1,6 @@
 ﻿using Chatter.Model;
 using Chatter.Model.BLL;
+using Chatter.App_Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,10 @@ namespace Chatter.Pages.AppPages
         {
             blogPost.UserId = Convert.ToInt32(Request.Form["selectList"]);
             Service.InsertBlogPost(blogPost);
+
+            Page.SetTempData("SuccessMessage", "Meddelandet lades till!");
+            Response.RedirectToRoute("Posts");
+            Context.ApplicationInstance.CompleteRequest();
         }
     }
 }

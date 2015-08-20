@@ -1,5 +1,6 @@
 ﻿using Chatter.Model;
 using Chatter.Model.BLL;
+using Chatter.App_Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,8 @@ namespace Chatter.Pages.AppPages
         {
             Service.InsertUser(user);
 
-            Response.RedirectToRoute("NewUserInfo", new { id = user.UserId });
+            Page.SetTempData("SuccessMessage", "Användaren lades till!");
+            Response.RedirectToRoute("UserList");
             Context.ApplicationInstance.CompleteRequest();
         }
     }

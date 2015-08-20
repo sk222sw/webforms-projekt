@@ -1,5 +1,6 @@
 ﻿using Chatter.Model;
 using Chatter.Model.BLL;
+using Chatter.App_Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,10 @@ namespace Chatter.Pages.AppPages
             if (TryUpdateModel(blogPost))
             {
                 Service.UpdateBlogPost(blogPost);
+
+                Page.SetTempData("SuccessMessage", "Meddelandet uppdaterades!");
+                Response.RedirectToRoute("Posts");
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
 

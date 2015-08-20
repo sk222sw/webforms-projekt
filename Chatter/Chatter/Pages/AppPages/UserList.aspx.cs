@@ -1,5 +1,6 @@
 ﻿using Chatter.Model;
 using Chatter.Model.BLL;
+using Chatter.App_Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,8 @@ namespace Chatter.Pages.AppPages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            SuccessLiteral.Text = Page.GetTempData("SuccessMessage") as String;
+            SuccessPanel.Visible = !String.IsNullOrWhiteSpace(SuccessLiteral.Text);
         }
 
         public IEnumerable<User> UserListView_GetData()
@@ -31,7 +33,14 @@ namespace Chatter.Pages.AppPages
         // The id parameter name should match the DataKeyNames value set on the control
         public void UserListView_DeleteItem(int userId)
         {
-            Service.DeleteUser(userId);
+            if (userId != 35)
+            {
+                Service.DeleteUser(userId);
+            }
+            else
+            {
+                //bla bla kan inte ta bort Anonym
+            }
         }
 
     }

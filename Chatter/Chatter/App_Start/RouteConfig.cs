@@ -14,12 +14,12 @@ namespace Chatter
             routes.MapPageRoute("Default",          "",                         "~/Pages/AppPages/Posts.aspx");
             routes.MapPageRoute("Posts",            "meddelanden",              "~/Pages/AppPages/Posts.aspx");
             routes.MapPageRoute("NewPost",          "meddelande/nytt",          "~/Pages/AppPages/NewPost.aspx");
+            routes.MapPageRoute("EditPost",         "meddelande/{id}",          "~/Pages/AppPages/EditPost.aspx");
             routes.MapPageRoute("UserList",         "användare",                "~/Pages/AppPages/UserList.aspx");
-            routes.MapPageRoute("UserDetails",      "användare/{id}",           "~/Pages/AppPages/UserList.aspx");
             routes.MapPageRoute("EditUser",         "användare/{id}/redigera",  "~/Pages/AppPages/EditUser.aspx");
             routes.MapPageRoute("NewUser",          "ny",                       "~/Pages/AppPages/NewUser.aspx");
             routes.MapPageRoute("NewUserInfo",      "ny/{id}",                  "~/Pages/AppPages/NewUserInfo.aspx");
-            routes.MapPageRoute("EditPost",         "meddelande/{id}",          "~/Pages/AppPages/EditPost.aspx");
+            routes.MapPageRoute("UserDetails",      "användare/{id}",           "~/Pages/AppPages/UserList.aspx");
         }
     }
 }

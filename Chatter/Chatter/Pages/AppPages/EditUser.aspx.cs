@@ -1,5 +1,6 @@
 ﻿using Chatter.Model;
 using Chatter.Model.BLL;
+using Chatter.App_Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,10 @@ namespace Chatter.Pages.AppPages
             if (TryUpdateModel(userInfo))
             {
                 Service.UpdateUserInfo(userInfo);
+
+                Page.SetTempData("SuccessMessage", "Användaren uppdaterades!");
+                Response.RedirectToRoute("UserList");
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
 
@@ -58,6 +63,10 @@ namespace Chatter.Pages.AppPages
             userInfo.UserId = Convert.ToInt32(RouteData.Values["id"]);
 
             Service.InsertUserInfo(userInfo);
+
+            Page.SetTempData("SuccessMessage", "Användaren uppdaterades!");
+            Response.RedirectToRoute("UserList");
+            Context.ApplicationInstance.CompleteRequest();            
 
         }
 

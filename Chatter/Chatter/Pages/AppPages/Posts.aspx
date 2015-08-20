@@ -3,6 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Inlägg</h2>
+    <asp:Panel ID="SuccessPanel" Visible="false" runat="server">
+        <asp:Literal ID="SuccessLiteral" runat="server" />
+    </asp:Panel>
     <asp:ListView ID="ListView1" runat="server"
         ItemType="Chatter.Model.BLL.BlogPost"
         SelectMethod="BlogPostListView_GetData"

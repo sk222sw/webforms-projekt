@@ -75,10 +75,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\AppPages\Default.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Infrastructure\PageExtensions.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -91,13 +91,6 @@
     <Compile Include="Model\DAL\UserDAL.cs" />
     <Compile Include="Model\DAL\UserInfoDAL.cs" />
     <Compile Include="Model\Service.cs" />
-    <Compile Include="Pages\AppPages\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\AppPages\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\AppPages\EditPost.aspx.cs">
       <DependentUpon>EditPost.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

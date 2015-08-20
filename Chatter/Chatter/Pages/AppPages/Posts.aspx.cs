@@ -1,5 +1,6 @@
 ﻿using Chatter.Model;
 using Chatter.Model.BLL;
+using Chatter.App_Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,8 @@ namespace Chatter.Pages.AppPages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            SuccessLiteral.Text = Page.GetTempData("SuccessMessage") as String;
+            SuccessPanel.Visible = !String.IsNullOrWhiteSpace(SuccessLiteral.Text);
         }
 
         public IEnumerable<BlogPost> BlogPostListView_GetData()
@@ -30,7 +32,9 @@ namespace Chatter.Pages.AppPages
 
         public User GetUser(int userId) 
         {
+
             return Service.GetUserById(userId);
+
         }
 
         // The id parameter name should match the DataKeyNames value set on the control

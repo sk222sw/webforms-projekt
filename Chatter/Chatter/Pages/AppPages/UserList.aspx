@@ -3,6 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Användare</h2>
+    <asp:Panel ID="SuccessPanel" Visible="false" runat="server">
+        <asp:Literal ID="SuccessLiteral" runat="server" />
+    </asp:Panel>
     <asp:ListView ID="UserListView" runat="server"
         ItemType="Chatter.Model.BLL.User"
         SelectMethod="UserListView_GetData"

@@ -3,7 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Nytt inlägg</h2>
-    <asp:Image ID="Image1" ImageUrl="http://animatedgif.net/underconstruction/anim0205-1_e0.gif" runat="server" />
     <asp:FormView ID="FormView1" runat="server"
         ItemType="Chatter.Model.BLL.BlogPost"
         DefaultMode="Insert"

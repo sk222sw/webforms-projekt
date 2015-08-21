@@ -34,12 +34,16 @@
             </div>
             <div>
                 <asp:TextBox ID="TitleTextBox" runat="server" Text='<%#: BindItem.Title %>' />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Titel måste fyllas i." Display="None" ControlToValidate="TitleTextBox" />
+                
             </div>
             <div>
                 <h3>Meddelande</h3>
             </div>
             <div>
                 <asp:TextBox ID="MessageTextBox" runat="server" Text='<%#: BindItem.Message %>'/>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Meddelande måste fyllas i." Display="None" ControlToValidate="MessageTextBox" />
+                
             </div>
             <div>
                 <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Insert" Text="Posta" />

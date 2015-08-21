@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Web.UI;
 
 namespace Chatter
 {
@@ -14,6 +15,13 @@ namespace Chatter
         protected void Application_Start(object sender, EventArgs e)
         {
             RouteConfig.RegisterRoute(RouteTable.Routes);
+            var jQuery = new ScriptResourceDefinition
+            {
+                Path = "~/Scripts/jquery-2.1.4.min.js",
+                DebugPath = "~/Scripts/jquery-2.1.4.js",
+                CdnPath = "http://ajax.microsoft.com/ajax/jQuery/jqiery-2.1.4.min.js",
+                CdnDebugPath = "http://ajax.microsoft.com/ajax/jQuery/jqiery-2.1.4.js"
+            };
         }
 
         protected void Session_Start(object sender, EventArgs e)

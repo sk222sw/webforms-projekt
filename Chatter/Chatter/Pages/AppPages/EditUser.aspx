@@ -40,7 +40,9 @@
                         </div>
                         <div>
                             <asp:TextBox ID="InsertUserInfoName" runat="server" Text='<%#: BindItem.Name %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Namn måste fyllas i." Display="None" ControlToValidate="InsertUserInfoName" />
                             <asp:TextBox ID="InsertUserInfoEmail" runat="server" Text='<%#: BindItem.Email%>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="E-post måste fyllas i." Display="None" ControlToValidate="InsertUserInfoEmail" />
                         </div>
                         <div>
                             <asp:LinkButton runat="server" CommandName="Insert" Text="Spara" />

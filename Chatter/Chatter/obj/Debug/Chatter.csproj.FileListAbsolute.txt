@@ -4,3 +4,4 @@ C:\Users\Sonny\Documents\Plugg\Web Forms\Projekt\webforms-projekt\Chatter\Chatte
 C:\Users\Sonny\Documents\Plugg\Web Forms\Projekt\webforms-projekt\Chatter\Chatter\obj\Debug\Chatter.csprojResolveAssemblyReference.cache
 C:\Users\Sonny\Documents\Plugg\Web Forms\Projekt\webforms-projekt\Chatter\Chatter\obj\Debug\Chatter.dll
 C:\Users\Sonny\Documents\Plugg\Web Forms\Projekt\webforms-projekt\Chatter\Chatter\obj\Debug\Chatter.pdb
+C:\Users\Sonny\Documents\Plugg\Web Forms\Projekt\webforms-projekt\Chatter\Chatter\bin\AspNet.ScriptManager.jQuery.dll

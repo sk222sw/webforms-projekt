@@ -59,15 +59,32 @@ namespace Chatter.Pages.AppPages
 
         public void UserInfoFormView_InsertItem(UserInfo userInfo)
         {
-            //var userInfo = Service.GetUserInfoById(userInfoId);
-            userInfo.UserId = Convert.ToInt32(RouteData.Values["id"]);
 
-            Service.InsertUserInfo(userInfo);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    userInfo.UserId = Convert.ToInt32(RouteData.Values["id"]);
 
-            Page.SetTempData("SuccessMessage", "Användaren uppdaterades!");
-            Response.RedirectToRoute("UserList");
-            Context.ApplicationInstance.CompleteRequest();            
+                    Service.InsertUserInfo(userInfo);
 
+                    Page.SetTempData("SuccessMessage", "Användaren uppdaterades!");
+                    Response.RedirectToRoute("UserList");
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+                catch (AggregateException ex)
+                {
+                    foreach (var vr in ex.InnerExceptions)
+                    {
+                        ModelState.AddModelError(String.Empty, vr.Message);
+                    }
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(String.Empty, "ERRORPLATS:CODEBEHIND Ett fel inträffade när posten skulle läggas till.");
+                } 
+                
+            }
         }
 
     }

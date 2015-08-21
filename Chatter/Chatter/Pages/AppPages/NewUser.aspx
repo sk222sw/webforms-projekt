@@ -13,6 +13,8 @@
             <InsertItemTemplate>
                 <div>
                     <asp:TextBox ID="NewUserName" runat="server" Text="<%#: BindItem.UserName %>"/>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Användarnamn måste fyllas i." Display="None" ControlToValidate="NewUserName" />
+                
                 </div>
                 <div>
                     <asp:LinkButton ID="LinkButton1" runat="server" Text="Lägg till" CommandName="Insert"/>

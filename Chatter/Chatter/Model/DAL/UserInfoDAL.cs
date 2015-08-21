@@ -16,37 +16,44 @@ namespace Chatter.Model.DAL
         {
             using (var conn = CreateConnection())
             {
-                var userInfos = new List<UserInfo>(100);
-
-                SqlCommand cmd = new SqlCommand("dbo.uspGetUserInfo", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                conn.Open();
-
-                using (var reader = cmd.ExecuteReader())
+                try
                 {
-                    //hämta kolumnindex
-                    var userInfoIdIndex = reader.GetOrdinal("UserInfoId");
-                    var userIdIndex = reader.GetOrdinal("UserId");
-                    var NameIndex = reader.GetOrdinal("Name");
-                    var EmailIndex = reader.GetOrdinal("Email");
+                    var userInfos = new List<UserInfo>(100);
 
-                    //fyll listan med objektreferenser
-                    while (reader.Read())
+                    SqlCommand cmd = new SqlCommand("dbo.uspGetUserInfo", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    conn.Open();
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        userInfos.Add(new UserInfo
-                        {
-                            UserInfoId = reader.GetInt32(userInfoIdIndex),
-                            UserId = reader.GetInt32(userIdIndex),
-                            Name = reader.GetString(NameIndex),
-                            Email = reader.GetString(EmailIndex)
-                        });
-                    }
+                        //hämta kolumnindex
+                        var userInfoIdIndex = reader.GetOrdinal("UserInfoId");
+                        var userIdIndex = reader.GetOrdinal("UserId");
+                        var NameIndex = reader.GetOrdinal("Name");
+                        var EmailIndex = reader.GetOrdinal("Email");
 
-                    //ta bort överflödiga poster i listan
-                    // och returnera den
-                    userInfos.TrimExcess();
-                    return userInfos;
+                        //fyll listan med objektreferenser
+                        while (reader.Read())
+                        {
+                            userInfos.Add(new UserInfo
+                            {
+                                UserInfoId = reader.GetInt32(userInfoIdIndex),
+                                UserId = reader.GetInt32(userIdIndex),
+                                Name = reader.GetString(NameIndex),
+                                Email = reader.GetString(EmailIndex)
+                            });
+                        }
+
+                        //ta bort överflödiga poster i listan
+                        // och returnera den
+                        userInfos.TrimExcess();
+                        return userInfos;
+                    }
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när posterna skulle hämtas.");
                 }
             }
         }
@@ -55,33 +62,40 @@ namespace Chatter.Model.DAL
         {
             using (var conn = CreateConnection())
             {
-                SqlCommand cmd = new SqlCommand("dbo.uspGetUserInfoByUserId", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Value = userId;
-
-                conn.Open();
-
-                using (var reader = cmd.ExecuteReader())
+                try
                 {
-                    if (reader.Read())
+                    SqlCommand cmd = new SqlCommand("dbo.uspGetUserInfoByUserId", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Value = userId;
+
+                    conn.Open();
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        int userInfoIdIndex = reader.GetOrdinal("UserInfoId");
-                        int userIdIndex = reader.GetOrdinal("UserId");
-                        int nameIndex = reader.GetOrdinal("Name");
-                        int emailIndex = reader.GetOrdinal("Email");
-
-                        return new UserInfo
+                        if (reader.Read())
                         {
-                            UserInfoId = reader.GetInt32(userInfoIdIndex),
-                            UserId = reader.GetInt32(userIdIndex),
-                            Name = reader.GetString(nameIndex),
-                            Email = reader.GetString(emailIndex)
-                        };
-                    }
-                }
-                return null;
+                            int userInfoIdIndex = reader.GetOrdinal("UserInfoId");
+                            int userIdIndex = reader.GetOrdinal("UserId");
+                            int nameIndex = reader.GetOrdinal("Name");
+                            int emailIndex = reader.GetOrdinal("Email");
 
+                            return new UserInfo
+                            {
+                                UserInfoId = reader.GetInt32(userInfoIdIndex),
+                                UserId = reader.GetInt32(userIdIndex),
+                                Name = reader.GetString(nameIndex),
+                                Email = reader.GetString(emailIndex)
+                            };
+                        }
+                    }
+                    return null;
+
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när posterna skulle hämtas.");
+                }
             }
         }
 
@@ -89,32 +103,39 @@ namespace Chatter.Model.DAL
         {
             using (var conn = CreateConnection())
             {
-                SqlCommand cmd = new SqlCommand("dbo.uspGetUserInfoById", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add("@UserInfoId", SqlDbType.Int, 4).Value = userInfoId;
-
-                conn.Open();
-
-                using (var reader = cmd.ExecuteReader())
+                try
                 {
-                    if (reader.Read())
-                    {
-                        int userInfoIdIndex = reader.GetOrdinal("UserInfoId");
-                        int userIdIndex = reader.GetOrdinal("UserId");
-                        int nameIndex = reader.GetOrdinal("Name");
-                        int emailIndex = reader.GetOrdinal("Email");
+                    SqlCommand cmd = new SqlCommand("dbo.uspGetUserInfoById", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                        return new UserInfo
+                    cmd.Parameters.Add("@UserInfoId", SqlDbType.Int, 4).Value = userInfoId;
+
+                    conn.Open();
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
                         {
-                            UserInfoId = reader.GetInt32(userInfoIdIndex),
-                            UserId = reader.GetInt32(userIdIndex),
-                            Name = reader.GetString(nameIndex),
-                            Email = reader.GetString(emailIndex)
-                        };
+                            int userInfoIdIndex = reader.GetOrdinal("UserInfoId");
+                            int userIdIndex = reader.GetOrdinal("UserId");
+                            int nameIndex = reader.GetOrdinal("Name");
+                            int emailIndex = reader.GetOrdinal("Email");
+
+                            return new UserInfo
+                            {
+                                UserInfoId = reader.GetInt32(userInfoIdIndex),
+                                UserId = reader.GetInt32(userIdIndex),
+                                Name = reader.GetString(nameIndex),
+                                Email = reader.GetString(emailIndex)
+                            };
+                        }
                     }
+                    return null;
                 }
-                return null;
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när posterna skulle hämtas.");
+                }
 
             }
         }
@@ -123,16 +144,23 @@ namespace Chatter.Model.DAL
         {
             using (var conn = CreateConnection())
             {
-                SqlCommand cmd = new SqlCommand("dbo.uspUpdateUserInfo", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("dbo.uspUpdateUserInfo", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@UserInfoId", SqlDbType.Int, 4).Value = userInfo.UserInfoId;
-                cmd.Parameters.Add("@Name", SqlDbType.VarChar, 40).Value = userInfo.Name;
-                cmd.Parameters.Add("@Email", SqlDbType.VarChar, 50).Value = userInfo.Email;
+                    cmd.Parameters.Add("@UserInfoId", SqlDbType.Int, 4).Value = userInfo.UserInfoId;
+                    cmd.Parameters.Add("@Name", SqlDbType.VarChar, 40).Value = userInfo.Name;
+                    cmd.Parameters.Add("@Email", SqlDbType.VarChar, 50).Value = userInfo.Email;
 
-                conn.Open();
+                    conn.Open();
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när posterna skulle hämtas.");
+                }
 
             }
         }
@@ -141,14 +169,21 @@ namespace Chatter.Model.DAL
         {
             using (var conn = CreateConnection())
             {
-                var cmd = new SqlCommand("dbo.uspDeleteUserInfo", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    var cmd = new SqlCommand("dbo.uspDeleteUserInfo", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@userInfoId", SqlDbType.Int, 4).Value = userInfoId;
+                    cmd.Parameters.Add("@userInfoId", SqlDbType.Int, 4).Value = userInfoId;
 
-                conn.Open();
+                    conn.Open();
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när posterna skulle hämtas.");
+                }
             }
         }
 
@@ -156,18 +191,25 @@ namespace Chatter.Model.DAL
         {
             using (var conn = CreateConnection())
             {
-                SqlCommand cmd = new SqlCommand("dbo.uspInsertUserInfo", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("dbo.uspInsertUserInfo", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Value = userInfo.UserId;
-                cmd.Parameters.Add("@Name", SqlDbType.VarChar, 40).Value = userInfo.Name;
-                cmd.Parameters.Add("@Email", SqlDbType.VarChar, 50).Value = userInfo.Email;
-                cmd.Parameters.Add("@UserInfoId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
-                conn.Open();
+                    cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Value = userInfo.UserId;
+                    cmd.Parameters.Add("@Name", SqlDbType.VarChar, 40).Value = userInfo.Name;
+                    cmd.Parameters.Add("@Email", SqlDbType.VarChar, 50).Value = userInfo.Email;
+                    cmd.Parameters.Add("@UserInfoId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+                    conn.Open();
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
-                //userInfo.UserInfoId = (int)cmd.Parameters["@UserInfoId"].Value;
+                    //userInfo.UserInfoId = (int)cmd.Parameters["@UserInfoId"].Value;
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när posterna skulle hämtas.");
+                }
             }
         }
 

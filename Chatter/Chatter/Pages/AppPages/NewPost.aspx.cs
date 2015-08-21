@@ -31,12 +31,30 @@ namespace Chatter.Pages.AppPages
 
         public void BlogPostFormView_InsertItem(BlogPost blogPost)
         {
-            blogPost.UserId = Convert.ToInt32(Request.Form["selectList"]);
-            Service.InsertBlogPost(blogPost);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    blogPost.UserId = Convert.ToInt32(Request.Form["selectList"]);
+                    Service.InsertBlogPost(blogPost);
 
-            Page.SetTempData("SuccessMessage", "Meddelandet lades till!");
-            Response.RedirectToRoute("Posts");
-            Context.ApplicationInstance.CompleteRequest();
+                    Page.SetTempData("SuccessMessage", "Meddelandet lades till!");
+                    Response.RedirectToRoute("Posts");
+                    Context.ApplicationInstance.CompleteRequest();
+
+                }
+                catch (AggregateException ex)
+                {
+                    foreach (var vr in ex.InnerExceptions)
+                    {
+                        ModelState.AddModelError(String.Empty, vr.Message);
+                    }
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(String.Empty, "ERRORPLATS:CODEBEHIND Ett fel inträffade när posten skulle läggas till.");
+                } 
+            } 
         }
     }
 }

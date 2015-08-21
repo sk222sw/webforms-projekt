@@ -84,6 +84,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\BLL\BlogPost.cs" />
+    <Compile Include="Model\BLL\BusinessObjectClass.cs" />
     <Compile Include="Model\BLL\User.cs" />
     <Compile Include="Model\BLL\UserInfo.cs" />
     <Compile Include="Model\DAL\BlogPostDAL.cs" />

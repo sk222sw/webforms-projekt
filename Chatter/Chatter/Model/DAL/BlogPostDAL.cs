@@ -14,38 +14,45 @@ namespace Chatter.Model.DAL
         {
             using (var conn = CreateConnection())
             {
-
-                var blogPosts = new List<BlogPost>(100);
-
-                SqlCommand cmd = new SqlCommand("dbo.uspGetBlogPosts", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                conn.Open();
-
-                using (var reader = cmd.ExecuteReader())
+                try
                 {
-                    //hämta kolumn-index för tabellen'
-                    var blogPostIdIndex = reader.GetOrdinal("BlogPostId");
-                    var UserIdIndex = reader.GetOrdinal("UserId");
-                    var TitleIndex = reader.GetOrdinal("Title");
-                    var MessageIndex = reader.GetOrdinal("Message");
-                    var DateIndex = reader.GetOrdinal("Date");
 
-                    while (reader.Read())
+                    var blogPosts = new List<BlogPost>(100);
+
+                    SqlCommand cmd = new SqlCommand("dbo.uspGetBlogPosts", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    conn.Open();
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        blogPosts.Add(new BlogPost
+                        //hämta kolumn-index för tabellen'
+                        var blogPostIdIndex = reader.GetOrdinal("BlogPostId");
+                        var UserIdIndex = reader.GetOrdinal("UserId");
+                        var TitleIndex = reader.GetOrdinal("Title");
+                        var MessageIndex = reader.GetOrdinal("Message");
+                        var DateIndex = reader.GetOrdinal("Date");
+
+                        while (reader.Read())
                         {
-                            BlogPostId = reader.GetInt32(blogPostIdIndex),
-                            UserId =  reader.GetInt32(UserIdIndex),
-                            Title = reader.GetString(TitleIndex),
-                            Message = reader.GetString(MessageIndex),
-                            Date = reader.GetDateTime(DateIndex)
-                        });
+                            blogPosts.Add(new BlogPost
+                            {
+                                BlogPostId = reader.GetInt32(blogPostIdIndex),
+                                UserId = reader.GetInt32(UserIdIndex),
+                                Title = reader.GetString(TitleIndex),
+                                Message = reader.GetString(MessageIndex),
+                                Date = reader.GetDateTime(DateIndex)
+                            });
+                        }
+
+                        blogPosts.TrimExcess();
+                        return blogPosts;
+
                     }
-
-                    blogPosts.TrimExcess();
-                    return blogPosts;
-
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när posterna skulle hämtas.");
                 }
 
 
@@ -56,32 +63,39 @@ namespace Chatter.Model.DAL
         {
             using (var conn = CreateConnection())
             {
-                SqlCommand cmd = new SqlCommand("dbo.uspGetBlogPostById", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPostId;
-
-                conn.Open();
-
-                using (var reader = cmd.ExecuteReader())
+                try
                 {
-                    if (reader.Read())
-                    {
-                        int blogPostIdIndex = reader.GetOrdinal("BlogPostId");
-                        int userIdIndex = reader.GetOrdinal("UserId");
-                        int titleIndex = reader.GetOrdinal("Title");
-                        int messageIndex = reader.GetOrdinal("Message");
+                    SqlCommand cmd = new SqlCommand("dbo.uspGetBlogPostById", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                        return new BlogPost
+                    cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPostId;
+
+                    conn.Open();
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
                         {
-                            BlogPostId = reader.GetInt32(blogPostIdIndex),
-                            UserId = reader.GetInt32(userIdIndex),
-                            Title = reader.GetString(titleIndex),
-                            Message = reader.GetString(messageIndex)
-                        };
+                            int blogPostIdIndex = reader.GetOrdinal("BlogPostId");
+                            int userIdIndex = reader.GetOrdinal("UserId");
+                            int titleIndex = reader.GetOrdinal("Title");
+                            int messageIndex = reader.GetOrdinal("Message");
+
+                            return new BlogPost
+                            {
+                                BlogPostId = reader.GetInt32(blogPostIdIndex),
+                                UserId = reader.GetInt32(userIdIndex),
+                                Title = reader.GetString(titleIndex),
+                                Message = reader.GetString(messageIndex)
+                            };
+                        }
                     }
+                    return null;
                 }
-                return null;
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när posten skulle hämtas.");
+                }
             }
         }
 
@@ -89,16 +103,23 @@ namespace Chatter.Model.DAL
         {
             using(var conn = CreateConnection())
 	        {
-                SqlCommand cmd = new SqlCommand("dbo.uspInsertBlogPost", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("dbo.uspInsertBlogPost", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Value = blogPost.UserId;
-                cmd.Parameters.Add("@Title", SqlDbType.VarChar, 50).Value = blogPost.Title;
-                cmd.Parameters.Add("@Message", SqlDbType.VarChar, 200).Value = blogPost.Message;
-                cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
-                conn.Open();
+                    cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Value = blogPost.UserId;
+                    cmd.Parameters.Add("@Title", SqlDbType.VarChar, 50).Value = blogPost.Title;
+                    cmd.Parameters.Add("@Message", SqlDbType.VarChar, 200).Value = blogPost.Message;
+                    cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+                    conn.Open();
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när posterna skulle hämtas.");
+                }
 	        }
         }
 
@@ -106,14 +127,21 @@ namespace Chatter.Model.DAL
         {
             using (var conn = CreateConnection())
             {
-                var cmd = new SqlCommand("dbo.uspDeleteBlogPost", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    var cmd = new SqlCommand("dbo.uspDeleteBlogPost", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPostId;
+                    cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPostId;
 
-                conn.Open();
+                    conn.Open();
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när posterna skulle hämtas.");
+                }
             }
         }
 
@@ -121,16 +149,23 @@ namespace Chatter.Model.DAL
         {
             using (var conn = CreateConnection())
             {
-                SqlCommand cmd = new SqlCommand("dbo.uspUpdateBlogPost", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("dbo.uspUpdateBlogPost", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPost.BlogPostId;
-                cmd.Parameters.Add("@Title", SqlDbType.VarChar, 50).Value = blogPost.Title;
-                cmd.Parameters.Add("@Message", SqlDbType.VarChar, 200).Value = blogPost.Message;
+                    cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPost.BlogPostId;
+                    cmd.Parameters.Add("@Title", SqlDbType.VarChar, 50).Value = blogPost.Title;
+                    cmd.Parameters.Add("@Message", SqlDbType.VarChar, 200).Value = blogPost.Message;
 
-                conn.Open();
+                    conn.Open();
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel inträffade när posterna skulle hämtas.");
+                }
             }
         }
     }

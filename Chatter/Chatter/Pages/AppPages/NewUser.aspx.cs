@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.ComponentModel.DataAnnotations;
 
 namespace Chatter.Pages.AppPages
 {
@@ -27,11 +28,28 @@ namespace Chatter.Pages.AppPages
 
         public void NewUserFormView_InsertItem(User user)
         {
-            Service.InsertUser(user);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Service.InsertUser(user);
 
-            Page.SetTempData("SuccessMessage", "Användaren lades till!");
-            Response.RedirectToRoute("UserList");
-            Context.ApplicationInstance.CompleteRequest();
+                    Page.SetTempData("SuccessMessage", "Användaren lades till!");
+                    Response.RedirectToRoute("UserList");
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+                catch (AggregateException ex)
+                {
+                    foreach (var vr in ex.InnerExceptions)
+                    {
+                        ModelState.AddModelError(String.Empty, vr.Message);
+                    }
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(String.Empty, "ERRORPLATS:CODEBEHIND Ett fel inträffade när användaren skulle läggas till.");
+                } 
+            }
         }
     }
 }

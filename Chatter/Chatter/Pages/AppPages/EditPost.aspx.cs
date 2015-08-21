@@ -27,16 +27,38 @@ namespace Chatter.Pages.AppPages
         // The id parameter name should match the DataKeyNames value set on the control
         public void BlogPostFormView_UpdateItem(int blogPostId)
         {
-            var blogPost = Service.GetBlogPostById(blogPostId);
-
-            if (TryUpdateModel(blogPost))
+            try
             {
-                Service.UpdateBlogPost(blogPost);
+                var blogPost = Service.GetBlogPostById(blogPostId);
 
-                Page.SetTempData("SuccessMessage", "Meddelandet uppdaterades!");
-                Response.RedirectToRoute("Posts");
-                Context.ApplicationInstance.CompleteRequest();
+                if (blogPost == null)
+                {
+                    Response.Clear();
+                    Response.StatusCode = 404;
+                    Response.StatusDescription = "Meddelandet hittades inte.";
+                    Response.End();
+                }
+
+                if (TryUpdateModel(blogPost))
+                {
+                    Service.UpdateBlogPost(blogPost);
+
+                    Page.SetTempData("SuccessMessage", "Meddelandet uppdaterades!");
+                    Response.RedirectToRoute("Posts");
+                    Context.ApplicationInstance.CompleteRequest();
+                }
             }
+            catch (AggregateException ex)
+            {
+                foreach (var vr in ex.InnerExceptions)
+                {
+                    ModelState.AddModelError(String.Empty, vr.Message);
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(String.Empty, "ERRORPLATS:CODEBEHIND Ett fel inträffade när meddelandet skulle uppdateras.");
+            } 
         }
 
         // The id parameter should match the DataKeyNames value set on the control

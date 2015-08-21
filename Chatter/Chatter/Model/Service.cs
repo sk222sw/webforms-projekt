@@ -2,6 +2,7 @@
 using Chatter.Model.DAL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -31,8 +32,10 @@ namespace Chatter.Model
         }
         #endregion
 
+        #region User crud
         public IEnumerable<User> GetUsers()
         {
+
             // se till att det är sorterat efter UserId
             return UserDAL.GetUsers().OrderBy(o => o.UserId);
         }
@@ -42,6 +45,25 @@ namespace Chatter.Model
             return UserDAL.GetUserById(userId);
         }
 
+        public void DeleteUser(int userId)
+        {
+            UserDAL.DeleteUser(userId);
+        }
+
+        public void InsertUser(User user)
+        {
+            ICollection<ValidationResult> validationResults;
+            if (!user.Validate(out validationResults))
+            {
+                throw new AggregateException("Objektet klarade inte valideringen.",
+                    validationResults.Select(vr => new ValidationException(vr.ErrorMessage)).ToList().AsReadOnly());
+            }
+
+            UserDAL.InsertUser(user);
+        }
+        #endregion
+
+        #region UserInfo Crud
         public IEnumerable<UserInfo> GetUserInfo()
         {
             // se till att det som returneras är sorterat efter UserId
@@ -59,6 +81,31 @@ namespace Chatter.Model
             return UserInfoDAL.GetUserInfoById(userInfoId);
         }
 
+        public void UpdateUserInfo(UserInfo userInfo)
+        {
+            ICollection<ValidationResult> validationResults;
+            if (!userInfo.Validate(out validationResults))
+            {
+                throw new AggregateException("Objektet klarade inte valideringen.",
+                    validationResults.Select(vr => new ValidationException(vr.ErrorMessage)).ToList().AsReadOnly());
+            }
+
+            UserInfoDAL.UpdateUserInfo(userInfo);
+        }
+
+        public void InsertUserInfo(UserInfo userInfo)
+        {
+            ICollection<ValidationResult> validationResults;
+            if (!userInfo.Validate(out validationResults))
+            {
+                throw new AggregateException("Objektet klarade inte valideringen.",
+                    validationResults.Select(vr => new ValidationException(vr.ErrorMessage)).ToList().AsReadOnly());
+            }
+            UserInfoDAL.InsertUserInfo(userInfo);
+        }
+        #endregion
+
+        #region BlogPost Crud
         public IEnumerable<BlogPost> GetBlogPosts()
         {
             return BlogPostDAL.GetBlogPosts();
@@ -69,28 +116,16 @@ namespace Chatter.Model
             return BlogPostDAL.GetBlogPostById(blogPostId);
         }
 
-        public void UpdateUserInfo(UserInfo userInfo)
-        {
-            UserInfoDAL.UpdateUserInfo(userInfo);
-        }
-
-        public void DeleteUser(int userId)
-        {
-            UserDAL.DeleteUser(userId);
-        }
-
-        public void InsertUser(User user)
-        {
-            UserDAL.InsertUser(user);
-        }
-
-        public void InsertUserInfo(UserInfo userInfo)
-        {
-            UserInfoDAL.InsertUserInfo(userInfo);
-        }
 
         public void InsertBlogPost(BlogPost blogPost)
         {
+            ICollection<ValidationResult> validationResults;
+            if (!blogPost.Validate(out validationResults))
+            {
+                throw new AggregateException("Objektet klarade inte valideringen.",
+                    validationResults.Select(vr => new ValidationException(vr.ErrorMessage)).ToList().AsReadOnly());
+            }
+
             BlogPostDAL.InsertBlogPost(blogPost);
         }
 
@@ -101,8 +136,16 @@ namespace Chatter.Model
 
         public void UpdateBlogPost(BlogPost blogPost)
         {
+            ICollection<ValidationResult> validationResults;
+            if (!blogPost.Validate(out validationResults))
+            {
+                throw new AggregateException("Objektet klarade inte valideringen.",
+                    validationResults.Select(vr => new ValidationException(vr.ErrorMessage)).ToList().AsReadOnly());
+            }
+
             BlogPostDAL.UpdateBlogPost(blogPost);
         }
+        #endregion
 
     }
 }

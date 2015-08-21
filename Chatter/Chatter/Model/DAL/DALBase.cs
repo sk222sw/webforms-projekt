@@ -18,7 +18,14 @@ namespace Chatter.Model.DAL
 
         public static SqlConnection CreateConnection()
         {
-            return new SqlConnection(_connectionString);
+            try
+            {
+                return new SqlConnection(_connectionString);
+            }
+            catch
+            {
+                throw new ApplicationException("Anslutning till databasen misslyckades.");
+            }
         }
     }
 }

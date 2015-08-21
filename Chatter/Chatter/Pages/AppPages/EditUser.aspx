@@ -4,6 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <article>
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
         <asp:FormView ID="FormView1" runat="server"
             ItemType="Chatter.Model.BLL.UserInfo"
             DataKeyNames="UserInfoId"

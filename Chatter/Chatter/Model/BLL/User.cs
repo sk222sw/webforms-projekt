@@ -10,8 +10,8 @@ namespace Chatter.Model.BLL
     {
         public int UserId { get; set; }
 
-        [Required(ErrorMessage = "ERRORPLATS:KLASS Ange användarnamn")]
-        [StringLength(20, ErrorMessage = "ERRORPLATS:KLASS Max 20 tecken")]
+        [Required(ErrorMessage = "Ange användarnamn")]
+        [StringLength(20, ErrorMessage = "Max 20 tecken")]
         public string UserName { get; set; }
     }
 }

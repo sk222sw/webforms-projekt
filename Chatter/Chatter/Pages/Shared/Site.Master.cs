@@ -24,10 +24,8 @@ namespace Chatter.Pages.Shared
 
         }
 
-        //public User GetUser(int userId)
-        //{
-        //    return Service.GetUserById(userId);
-        //}
+
+
 
     }
 }

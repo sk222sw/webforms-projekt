@@ -109,24 +109,6 @@ article #date {
     font-weight: 900;
 }
 
-article:first-child {
-    background: white;
-}
-article:nth-child(2n) {
-    background: rgb(219, 188, 188);
-}
-article:nth-child(3n) {
-    background: rgb(185, 178, 157);
-}
-article:nth-child(4n) {
-    background: rgb(152, 188, 196);
-}
-article:nth-child(5n) {
-    background: rgb(159, 202, 173);
-}
-article:nth-child(6n) {
-    background: rgb(125, 116, 154);
-}
 
 /*secArticles*//*secArticles*//*secArticles*//*secArticles*//*secArticles*//*secArticles*/
 
@@ -138,3 +120,28 @@ table {
 
 
 /*secUserList*//*secUserList*//*secUserList*//*secUserList*//*secUserList*//*secUserList*/
+
+.successContainer {
+    color: green;
+    text-align: center;
+    width: 450px;
+    height: 30px;
+    margin: 0 auto;
+    border: solid 1px #042a00;
+    background: #9eff7d;
+    font-family: sans-serif;
+    font-size: 30px;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+#ContentPlaceHolder1_ValidationSummary1 {
+    color: white;
+    width: 300px;
+    text-align: center;
+    margin: 0 auto;
+    border: solid 1px black;
+    background: #ff3434;
+    font-family: sans-serif;
+    
+}

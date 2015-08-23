@@ -3,8 +3,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Inlägg</h2>
-    <asp:Panel ID="SuccessPanel" Visible="false" runat="server">
-        <asp:Literal ID="SuccessLiteral" runat="server" />
+    <asp:Panel ID="SuccessPanel" CssClass="successMessage" Visible="false" runat="server">
+        <div class="successContainer">   
+            <asp:Literal ID="SuccessLiteral" runat="server" />
+            <asp:LinkButton ID="CloseButton" runat="server" CssClass="CloseButton" Text="X"/>
+        </div>
     </asp:Panel>
     <asp:ListView ID="ListView1" runat="server"
         ItemType="Chatter.Model.BLL.BlogPost"

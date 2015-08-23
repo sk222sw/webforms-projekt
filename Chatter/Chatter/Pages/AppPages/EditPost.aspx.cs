@@ -57,7 +57,7 @@ namespace Chatter.Pages.AppPages
             }
             catch (Exception)
             {
-                ModelState.AddModelError(String.Empty, "ERRORPLATS:CODEBEHIND Ett fel inträffade när meddelandet skulle uppdateras.");
+                ModelState.AddModelError(String.Empty, "CODEBEHIND Ett fel inträffade när meddelandet skulle uppdateras.");
             } 
         }
 

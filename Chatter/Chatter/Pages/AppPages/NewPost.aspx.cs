@@ -52,7 +52,7 @@ namespace Chatter.Pages.AppPages
                 }
                 catch (Exception)
                 {
-                    ModelState.AddModelError(String.Empty, "ERRORPLATS:CODEBEHIND Ett fel inträffade när posten skulle läggas till.");
+                    ModelState.AddModelError(String.Empty, "CODEBEHIND Ett fel inträffade när posten skulle läggas till.");
                 } 
             } 
         }

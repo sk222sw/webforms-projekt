@@ -43,5 +43,9 @@ namespace Chatter.Pages.AppPages
             }
         }
 
+        protected void CloseButton_Click(object sender, EventArgs e)
+        {
+        }
+
     }
 }

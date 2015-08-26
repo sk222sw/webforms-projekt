@@ -21,7 +21,7 @@ namespace Chatter.Model.DAL
                 {
                     var users = new List<User>(100);
 
-                    SqlCommand cmd = new SqlCommand("dbo.uspGetUser", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.uspGetUser", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     conn.Open();
@@ -65,7 +65,7 @@ namespace Chatter.Model.DAL
                 try
                 {
 
-                    var cmd = new SqlCommand("dbo.uspGetUserById", conn);
+                    var cmd = new SqlCommand("appSchema.uspGetUserById", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@userId", SqlDbType.Int, 4).Value = userId;
@@ -102,7 +102,7 @@ namespace Chatter.Model.DAL
                 try
                 {
 
-                    var cmd = new SqlCommand("dbo.uspDeleteUser", conn);
+                    var cmd = new SqlCommand("appSchema.uspDeleteUser", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@userId", SqlDbType.Int, 4).Value = userId;
@@ -125,7 +125,7 @@ namespace Chatter.Model.DAL
                 try
                 {
 
-                    SqlCommand cmd = new SqlCommand("dbo.uspInsertUser", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.uspInsertUser", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@UserName", SqlDbType.VarChar, 40).Value = user.UserName;

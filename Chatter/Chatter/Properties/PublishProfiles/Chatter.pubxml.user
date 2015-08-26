@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>Z:\</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/AspNet.ScriptManager.jQuery.dll">
+      <publishTime>08/21/2015 19:15:43</publishTime>
+    </File>
+    <File Include="bin/Chatter.dll">
+      <publishTime>08/25/2015 21:04:46</publishTime>
+    </File>
+    <File Include="Content/close_button_1-512.png">
+      <publishTime>08/23/2015 13:41:47</publishTime>
+    </File>
+    <File Include="Content/main.css">
+      <publishTime>08/23/2015 14:21:43</publishTime>
+    </File>
+    <File Include="Content/reset.css">
+      <publishTime>08/18/2015 15:42:31</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>08/15/2015 12:35:35</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>08/21/2015 19:15:44</publishTime>
+    </File>
+    <File Include="Pages/AppPages/EditPost.aspx">
+      <publishTime>08/23/2015 14:19:09</publishTime>
+    </File>
+    <File Include="Pages/AppPages/EditUser.aspx">
+      <publishTime>08/21/2015 19:26:44</publishTime>
+    </File>
+    <File Include="Pages/AppPages/NewPost.aspx">
+      <publishTime>08/21/2015 19:31:19</publishTime>
+    </File>
+    <File Include="Pages/AppPages/NewUser.aspx">
+      <publishTime>08/21/2015 19:37:52</publishTime>
+    </File>
+    <File Include="Pages/AppPages/Posts.aspx">
+      <publishTime>08/23/2015 14:12:20</publishTime>
+    </File>
+    <File Include="Pages/AppPages/UserList.aspx">
+      <publishTime>08/25/2015 20:39:22</publishTime>
+    </File>
+    <File Include="Pages/Shared/Error.html">
+      <publishTime>08/21/2015 19:07:28</publishTime>
+    </File>
+    <File Include="Pages/Shared/Site.Master">
+      <publishTime>08/23/2015 14:08:50</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.js">
+      <publishTime>08/21/2015 19:15:43</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.min.js">
+      <publishTime>08/21/2015 19:15:43</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.min.map">
+      <publishTime>08/21/2015 19:15:43</publishTime>
+    </File>
+    <File Include="Scripts/main.js">
+      <publishTime>08/23/2015 14:05:21</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>08/25/2015 21:04:47</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

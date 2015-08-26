@@ -20,7 +20,7 @@ namespace Chatter.Model.DAL
                 {
                     var userInfos = new List<UserInfo>(100);
 
-                    SqlCommand cmd = new SqlCommand("dbo.uspGetUserInfo", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.uspGetUserInfo", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     conn.Open();
@@ -64,7 +64,7 @@ namespace Chatter.Model.DAL
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("dbo.uspGetUserInfoByUserId", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.uspGetUserInfoByUserId", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Value = userId;
@@ -105,7 +105,7 @@ namespace Chatter.Model.DAL
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("dbo.uspGetUserInfoById", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.uspGetUserInfoById", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@UserInfoId", SqlDbType.Int, 4).Value = userInfoId;
@@ -146,7 +146,7 @@ namespace Chatter.Model.DAL
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("dbo.uspUpdateUserInfo", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.uspUpdateUserInfo", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@UserInfoId", SqlDbType.Int, 4).Value = userInfo.UserInfoId;
@@ -171,7 +171,7 @@ namespace Chatter.Model.DAL
             {
                 try
                 {
-                    var cmd = new SqlCommand("dbo.uspDeleteUserInfo", conn);
+                    var cmd = new SqlCommand("appSchema.uspDeleteUserInfo", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@userInfoId", SqlDbType.Int, 4).Value = userInfoId;
@@ -193,7 +193,7 @@ namespace Chatter.Model.DAL
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("dbo.uspInsertUserInfo", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.uspInsertUserInfo", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Value = userInfo.UserId;

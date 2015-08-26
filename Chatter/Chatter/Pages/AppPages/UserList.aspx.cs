@@ -33,13 +33,9 @@ namespace Chatter.Pages.AppPages
         // The id parameter name should match the DataKeyNames value set on the control
         public void UserListView_DeleteItem(int userId)
         {
-            if (userId != 35)
+            if (userId != 3)
             {
                 Service.DeleteUser(userId);
-            }
-            else
-            {
-                //bla bla kan inte ta bort Anonym
             }
         }
 

@@ -19,7 +19,7 @@ namespace Chatter.Model.DAL
 
                     var blogPosts = new List<BlogPost>(100);
 
-                    SqlCommand cmd = new SqlCommand("dbo.uspGetBlogPosts", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.uspGetBlogPosts", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     conn.Open();
@@ -65,7 +65,7 @@ namespace Chatter.Model.DAL
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("dbo.uspGetBlogPostById", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.uspGetBlogPostById", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPostId;
@@ -105,7 +105,7 @@ namespace Chatter.Model.DAL
 	        {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("dbo.uspInsertBlogPost", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.uspInsertBlogPost", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@UserId", SqlDbType.Int, 4).Value = blogPost.UserId;
@@ -129,7 +129,7 @@ namespace Chatter.Model.DAL
             {
                 try
                 {
-                    var cmd = new SqlCommand("dbo.uspDeleteBlogPost", conn);
+                    var cmd = new SqlCommand("appSchema.uspDeleteBlogPost", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPostId;
@@ -151,7 +151,7 @@ namespace Chatter.Model.DAL
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("dbo.uspUpdateBlogPost", conn);
+                    SqlCommand cmd = new SqlCommand("appSchema.uspUpdateBlogPost", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@BlogPostId", SqlDbType.Int, 4).Value = blogPost.BlogPostId;

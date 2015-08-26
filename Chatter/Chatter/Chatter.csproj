@@ -72,6 +72,7 @@
     <Content Include="Pages\AppPages\UserList.aspx" />
     <Content Include="Pages\Shared\Error.html" />
     <Content Include="Pages\Shared\Site.Master" />
+    <None Include="Properties\PublishProfiles\Chatter.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
